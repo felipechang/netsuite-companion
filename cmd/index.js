@@ -29,9 +29,10 @@ switch (process.argv[2]) {
         }
         inquirer.prompt(init.questions).then((a) => {
             init.unzipSource(() => {
-                init.updateFile(a, ".env.sample", path.join(process.cwd(), ".env"));
-                init.updateFile(a, "tsconfig.json", path.join(process.cwd(), "tsconfig.json"));
-                init.updateFile(a, "manifest.xml.sample", path.join(process.cwd(), "src", "manifest.xml"));
+                setTimeout(() => {
+                    init.updateFile(a, ".env.sample", path.join(process.cwd(), ".env"));
+                    init.updateFile(a, "manifest.xml.sample", path.join(process.cwd(), "src", "manifest.xml"));
+                }, 500);
             });
         });
         break;

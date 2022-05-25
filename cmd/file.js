@@ -83,7 +83,7 @@ const templateTree = getFolderTree(path.join(__dirname, "templates"));
 // SuiteScript folder
 const pathList = getPathList(paths.suiteScriptPath, {});
 if (pathList.length === 0) {
-    console.error("Create a project folder first: netsuite-companion folder");
+    console.error("Creating project at SuiteScript root");
     return;
 }
 
