@@ -8,4 +8,4 @@
 
 `netsuite-companion file` creates a script or component file
 
-`netsuite-companion build` produces a zipped artifact in the deploy folder
+Deployment strategies depend on the user's preference

@@ -14,7 +14,7 @@ const PROCESS_OPTIONS = [
 ];
 
 if (!process.argv[2] || PROCESS_OPTIONS.indexOf(process.argv[2]) === -1) {
-    return console.error("netsuite-companion demands a valid argument ");
+    return console.error("use a netsuite-companion option (init/folder/file)");
 }
 
 if (process.argv[2] !== "init" && (!process.env.COMPANY_NAME || !process.env.USER_NAME || !process.env.USER_EMAIL)) {
