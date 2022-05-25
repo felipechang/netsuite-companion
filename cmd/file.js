@@ -3,11 +3,6 @@
 //Loading dependencies
 require("dotenv").config()
 
-if (!process.env.COMPANY_NAME || !process.env.USER_NAME || !process.env.USER_EMAIL) {
-    console.error("Run boot script first: npm run boot");
-    return;
-}
-
 const path = require("path");
 const handlebars = require("handlebars");
 const fs = require("fs");
