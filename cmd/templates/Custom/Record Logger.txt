@@ -1,0 +1,500 @@
+import {ClientCurrentRecord} from "N/record";
+
+
+interface ICopyLoadOptions {
+    /** Name-value pairs containing default values of fields in the new record. */
+    defaultValues?: { [fieldId: string]: any };
+    /** The internal ID of the existing record instance in NetSuite. */
+    id: FieldValue | number | string;
+    /**
+     * Determines whether the new record is dynamic. If set to true, the record is created in dynamic mode. If set to false, the record is created in standard mode. By default, this value is false.
+     * - When a SuiteScript 2.0 script creates, copies, loads, or transforms a record in standard mode, the record’s body fields and sublist line items are not sourced, calculated, and validated until the record is saved (submitted) with Record.save(options).
+     * - When you work with a record in standard mode, you do not need to set values in any particular order. After submitting the record, NetSuite processes the record’s body fields and sublist line items in the correct order, regardless of the organization of your script.
+     * - When a SuiteScript 2.0 script creates, copies, loads, or transforms a record in dynamic mode, the record’s body fields and sublist line items are sourced, calculated, and validated in real-time. A record in dynamic mode emulates the behavior of a record in the UI.
+     * - When you work with a record in dynamic mode, it is important that you set values in the same order you would within the UI. If you fail to do this, your results may not be accurate.
+     */
+    isDynamic?: boolean;
+    /** The record type. */
+    type: Type | string;
+}
+
+interface IRecordCreateOptions {
+    /**
+     * Name-value pairs containing default values of fields in the new record.
+     */
+    defaultValues?: any;
+    /**
+     * Determines whether the new record is dynamic. If set to true, the record is created in dynamic mode. If set to false, the record is created in standard mode. By default, this value is false.
+     * - When a SuiteScript 2.0 script creates, copies, loads, or transforms a record in standard mode, the record’s body fields and sublist line items are not sourced, calculated, and validated until the record is saved (submitted) with Record.save(options).
+     * - When you work with a record in standard mode, you do not need to set values in any particular order. After submitting the record, NetSuite processes the record’s body fields and sublist line items in the correct order, regardless of the organization of your script.
+     * - When a SuiteScript 2.0 script creates, copies, loads, or transforms a record in dynamic mode, the record’s body fields and sublist line items are sourced, calculated, and validated in real-time. A record in dynamic mode emulates the behavior of a record in the UI.
+     * - When you work with a record in dynamic mode, it is important that you set values in the same order you would within the UI. If you fail to do this, your results may not be accurate.
+     */
+    isDynamic?: boolean;
+    /**
+     * The record type.
+     */
+    type: Type | string;
+}
+
+interface ICancelCommitLineOptions {
+    /** The internal ID of the sublist. */
+    sublistId: string;
+}
+
+interface IGetCurrentSublistValueOptions {
+    /** The internal ID of a standard or custom sublist field. */
+    fieldId: string;
+    /** The internal ID of the sublist. */
+    sublistId: string;
+}
+
+interface IGetFieldOptions {
+    /** The internal ID of a standard or custom body field. */
+    fieldId: string;
+}
+
+interface IInsertLineOptions {
+    /** If set to true, scripting recalculation is ignored. Default is false. */
+    ignoreRecalc?: boolean;
+    /** The line number to insert. */
+    line: number;
+    /** The internal ID of the sublist. */
+    sublistId: string;
+}
+
+interface IRecordGetLineCountOptions {
+    /** The internal ID of the sublist. */
+    sublistId: string;
+}
+
+interface ISelectLineOptions {
+    /** The line number to select in the sublist. */
+    line: number;
+    /** The internal ID of the sublist. */
+    sublistId: string;
+}
+
+interface ISetCurrentSublistTextOptions {
+    /** The internal ID of a standard or custom sublist field. */
+    fieldId: string;
+    /** Indicates whether to perform field sourcing synchronously.
+     * If set to true, sources dependent field information for empty fields synchronously.
+     * Defaults to false – dependent field values are not sourced synchronously.
+     */
+    fireSlavingSync?: boolean;
+    /** Use forceSyncSourcing instead of fireSlavingSync on currentRecord module. */
+    forceSyncSourcing?: boolean;
+    /** If set to true, the field change and slaving event is ignored. Default is false. */
+    ignoreFieldChange?: boolean;
+    /** The internal ID of the sublist. */
+    sublistId: string;
+    /** The text to set the value to. */
+    text: string | string[];
+}
+
+interface IGetSublistValueOptions {
+    /** The internal ID of a standard or custom sublist field. */
+    fieldId: string;
+    /** The line number for the field. */
+    line: number;
+    /** The internal ID of the sublist. */
+    sublistId: string;
+}
+
+interface IFindSublistLineWithValueOptions {
+    /** The internal ID of a standard or custom sublist field. */
+    fieldId: string;
+    /** The internal ID of the sublist. */
+    sublistId: string;
+    /** The value to search for. */
+    value: FieldValue;
+}
+
+interface ISetCurrentSublistValueOptions {
+    /** The internal ID of a standard or custom sublist field. */
+    fieldId: string;
+    /** Documented in N/currentRecord but not N/record. Set to true to synchronously set this value and its sourced values before returning. */
+    fireSlavingSync?: boolean;
+    /** Use forceSyncSourcing instead of fireSlavingSync on currentRecord module. */
+    forceSyncSourcing?: boolean;
+    /** If set to true, the field change and slaving event is ignored. Default is false. */
+    ignoreFieldChange?: boolean;
+    /** The internal ID of the sublist. */
+    sublistId: string;
+    /**
+     * The value to set the field to.
+     * The value type must correspond to the field type being set. For example:
+     * - Text, Radio and Select fields accept string values.
+     * - Checkbox fields accept Boolean values.
+     * - Date and DateTime fields accept Date values.
+     * - Integer, Float, Currency and Percent fields accept number values.
+     */
+    value: FieldValue;
+}
+
+interface ISetValueOptions {
+    /** The internal ID of a standard or custom body field. */
+    fieldId: string;
+    /** Documented in N/currentRecord but not N/record. Set to true to synchronously set this value and its sourced values before returning. */
+    fireSlavingSync?: boolean;
+    /** Use forceSyncSourcing instead of fireSlavingSync on currentRecord module. */
+    forceSyncSourcing?: boolean;
+    /** If set to true, the field change and slaving event is ignored. */
+    ignoreFieldChange?: boolean;
+    /**
+     * The value to set the field to.
+     * The value type must correspond to the field type being set. For example:
+     * - Text, Radio and Select fields accept string values.
+     * - Checkbox fields accept Boolean values.
+     * - Date and DateTime fields accept Date values.
+     * - Integer, Float, Currency and Percent fields accept number values.
+     */
+    value: FieldValue;
+}
+
+interface ISubmitConfig {
+    /** Indicates whether to enable sourcing during the record update. Defaults to true. */
+    enableSourcing?: boolean;
+    /** Indicates whether to ignore mandatory fields during record submission. Default is false. */
+    ignoreMandatoryFields?: boolean;
+}
+
+interface ISetSublistValueOptions {
+    /** The internal ID of a standard or custom sublist field. */
+    fieldId: string;
+    /** WARNING - UNDOCUMENTED. Set to true to synchronously set this value and its sourced values before returning. */
+    fireSlavingSync?: boolean;
+    /** Use forceSyncSourcing instead of fireSlavingSync on currentRecord module. */
+    forceSyncSourcing?: boolean;
+    /** The internal ID of a standard or custom sublist field. */
+    line: number;
+    /** The internal ID of the sublist. */
+    sublistId: string;
+    /**
+     * The value to set the sublist field to.
+     * The value type must correspond to the field type being set. For example:
+     * - Text, Radio and Select fields accept string values.
+     * - Checkbox fields accept Boolean values.
+     * - Date and DateTime fields accept Date values.
+     * - Integer, Float, Currency and Percent fields accept number values.
+     */
+    value: FieldValue;
+}
+
+
+/**
+ * Record Logger library file
+ *
+ * WARNING:
+ * TypeScript generated file, do not edit directly
+ * source files are located in the the repository
+ *
+ * @description: Logs every database read/write
+ *
+ * @copyright {{ date }} {{ company_name }}
+ * @author {{ user_name }} {{ user_email }}
+ *
+ * @NApiVersion 2.x
+ * @NModuleScope SameAccount
+ */
+
+
+/** RecordLogger class */
+class RecordLogger {
+
+    /** Assigned record */
+    private record: Record | ClientCurrentRecord | null = null;
+
+    /** Panic!! we can't work without a record */
+    private static _panic(): any {
+        throw new Error("Logger record not set!!");
+    }
+
+    /** addRecord: Add record to class */
+    public addRecord(record: Record | ClientCurrentRecord): void {
+        this._print("addRecord", {});
+        this.record = record;
+    }
+
+    /** addRecord: Add record to class with type and ID */
+    public addRecordById(type: Type | string, id: string): void {
+        this._print("addRecordById", {type, id});
+        this.record = load({type, id});
+    }
+
+    /** commitLine: Print on committing a line */
+    public commitLine(options: ICancelCommitLineOptions): void {
+        if (!this.record) {
+            return RecordLogger._panic();
+        }
+        this._print("commitLine", options);
+        this.record.commitLine(options);
+    }
+
+    /** createRecord: Create record and add to class */
+    public createRecord(options: IRecordCreateOptions): void {
+        this._print("createRecord", options);
+        this.record = create(options);
+    }
+
+    /** findSublistLineWithValue: Print on get current sublist value */
+    public findSublistLineWithValue(options: IFindSublistLineWithValueOptions): number {
+        if (!this.record) {
+            return RecordLogger._panic();
+        }
+        const line = this.record.findSublistLineWithValue(options);
+        const {sublistId, fieldId, value} = options;
+        this._print("findSublistLineWithValue", {sublistId, fieldId, value, line});
+        return line;
+    }
+
+    /** getCurrentSublistSubrecord: Print on line subrecord load */
+    public getCurrentSublistSubrecord(options: IGetCurrentSublistValueOptions): RecordLogger {
+        if (!this.record) {
+            return RecordLogger._panic();
+        }
+        this._print("getCurrentSublistSubrecord", options);
+        const logger = new RecordLogger();
+        logger.addRecord(this.record.getCurrentSublistSubrecord(options));
+        return logger;
+    }
+
+    /** getCurrentSublistText: Print on get current sublist text value */
+    public getCurrentSublistText(options: IGetCurrentSublistValueOptions): FieldValue {
+        if (!this.record) {
+            return RecordLogger._panic();
+        }
+        const value = this.record.getCurrentSublistText(options);
+        const {sublistId, fieldId} = options;
+        this._print("getCurrentSublistText", {sublistId, fieldId, value});
+        return value;
+    }
+
+    /** getCurrentSublistValue: Print on get current sublist value */
+    public getCurrentSublistValue(options: IGetCurrentSublistValueOptions): FieldValue {
+        if (!this.record) {
+            return RecordLogger._panic();
+        }
+        const value = this.record.getCurrentSublistValue(options);
+        const {sublistId, fieldId} = options;
+        this._print("getCurrentSublistValue", {sublistId, fieldId, value});
+        return value;
+    }
+
+    /** getId: Print on get record internal ID */
+    public getId(): number {
+        if (!this.record) {
+            return RecordLogger._panic();
+        }
+        this._print("getId", {id: this.record.id});
+        return this.record.id;
+    }
+
+    /** getLineCount: Print on get line count including count */
+    public getLineCount(options: IRecordGetLineCountOptions): number {
+        if (!this.record) {
+            return RecordLogger._panic();
+        }
+        const count = this.record.getLineCount(options);
+        const {sublistId} = options;
+        this._print("getLineCount", {sublistId, count});
+        return count;
+    }
+
+    /** getRecord: Print on get record */
+    public getRecord(): Record | ClientCurrentRecord {
+        if (!this.record) {
+            return RecordLogger._panic();
+        }
+        this._print("getRecord", {});
+        return this.record;
+    }
+
+    /** getSublistSubrecord: Print on line subrecord load */
+    public getSublistSubrecord(options: IGetSublistValueOptions): RecordLogger {
+        if (!this.record) {
+            return RecordLogger._panic();
+        }
+        this._print("getSublistSubrecord", options);
+        const logger = new RecordLogger();
+        // @ts-ignore
+        logger.addRecord(this.record.getSublistSubrecord(options));
+        return logger;
+    }
+
+    /** getSublistText: Print on get current sublist text */
+    public getSublistText(options: IGetSublistValueOptions): FieldValue {
+        if (!this.record) {
+            return RecordLogger._panic();
+        }
+        const value = this.record.getSublistText(options);
+        const {sublistId, fieldId, line} = options;
+        this._print("getSublistText", {sublistId, fieldId, line, value});
+        return value;
+    }
+
+    /** getSublistValue: Print on get sublist value */
+    public getSublistValue(options: IGetSublistValueOptions): FieldValue {
+        if (!this.record) {
+            return RecordLogger._panic();
+        }
+        const value = this.record.getSublistValue(options);
+        const {sublistId, fieldId, line} = options;
+        this._print("getSublistValue", {sublistId, fieldId, line, value});
+        return value;
+    }
+
+    /** getSublistValues */
+    public getSublistValues<T>(sublistId: string, fieldId: string): T[] {
+        const result: T[] = [];
+        const count = this.getLineCount({sublistId});
+        for (let line = 0; line < count; line++) {
+            const v = this.getSublistValue({sublistId, fieldId, line});
+            result.push(v as any);
+        }
+        return result;
+    }
+
+    /** getSubrecord: Print on subrecord load */
+    public getSubrecord(options: IGetFieldOptions): RecordLogger {
+        if (!this.record) {
+            return RecordLogger._panic();
+        }
+        this._print("getSubrecord", options);
+        const logger = new RecordLogger();
+        logger.addRecord(this.record.getSubrecord(options));
+        return logger;
+    }
+
+    /** getType: Print on get type */
+    public getType(): string | Type {
+        if (!this.record) {
+            return RecordLogger._panic();
+        }
+        this._print("getType", {type: this.record.type});
+        return this.record.type;
+    }
+
+    /** getValue: Print on get value */
+    public getValue(options: IGetFieldOptions): FieldValue {
+        if (!this.record) {
+            return RecordLogger._panic();
+        }
+        const value = this.record.getValue(options);
+        const {fieldId} = options;
+        this._print("getValue", {fieldId, value});
+        return value;
+    }
+
+    /** insertLine: Insert new line on sublist */
+    public insertLine(options: IInsertLineOptions): void {
+        if (!this.record) {
+            return RecordLogger._panic();
+        }
+        this._print("insertLine", options);
+        this.record.insertLine(options);
+    }
+
+    /** loadRecord: Load record and add to class */
+    public loadRecord(options: ICopyLoadOptions): void {
+        this._print("loadRecord", options);
+        this.record = load(options);
+    }
+
+    /** removeLine: Print on sublist line removal */
+    public removeLine(options: IInsertLineOptions): void {
+        if (!this.record) {
+            return RecordLogger._panic();
+        }
+        this._print("removeLine", options);
+        this.record.removeLine(options);
+    }
+
+    /** save: Print on record save */
+    public save(options?: ISubmitConfig): number {
+        if (!this.record) {
+            return RecordLogger._panic();
+        }
+        this._print("save", options || {});
+        return "save" in this.record ? this.record.save(options) : -1;
+    }
+
+    /** selectLine: Print on select line */
+    public selectLine(options: ISelectLineOptions): void {
+        if (!this.record) {
+            return RecordLogger._panic();
+        }
+        this._print("selectLine", options);
+        this.record.selectLine(options);
+    }
+
+    /** selectNewLine: Print on selecting a new line */
+    public selectNewLine(options: IRecordGetLineCountOptions): void {
+        if (!this.record) {
+            return RecordLogger._panic();
+        }
+        this._print("selectNewLine", options);
+        this.record.selectNewLine(options);
+    }
+
+    /** setCurrentSublistText: Print on set current sublist text */
+    public setCurrentSublistText(options: ISetCurrentSublistTextOptions): void {
+        if (!this.record) {
+            return RecordLogger._panic();
+        }
+        this._print("setCurrentSublistText", options);
+        this.record.setCurrentSublistText(options);
+    }
+
+    /** setCurrentSublistValue: Print on set current sublist value */
+    public setCurrentSublistValue(options: ISetCurrentSublistValueOptions): void {
+        if (!this.record) {
+            return RecordLogger._panic();
+        }
+        this._print("setCurrentSublistValue", options);
+        this.record.setCurrentSublistValue(options);
+    }
+
+    /** setSublistValue: Print on set sublist value */
+    public setSublistValue(options: ISetSublistValueOptions): void {
+        if (!this.record) {
+            return RecordLogger._panic();
+        }
+        if ("setSublistValue" in this.record) {
+            this.record.setSublistValue(options);
+            this._print("setSublistValue", options);
+        } else {
+            throw new Error("setSublistValue is not allowed on ClientCurrentRecord");
+        }
+    }
+
+    /** setValue: Print on body field set value */
+    public setValue(options: ISetValueOptions): void {
+        if (!this.record) {
+            return RecordLogger._panic();
+        }
+        this._print("setValue", options);
+        this.record.setValue(options);
+    }
+
+    /**
+     * submitFields: Print on submitting fields
+     * @governance 10
+     */
+    public submitFields(options: SubmitFieldsOptions): number {
+        this._print("submitFields", options);
+        return submitFields(options);
+    }
+
+    /** print: Print message to log */
+    private _print(action: string, data: { [key: string]: any }): void {
+        if (this.record) {
+            audit(`${this.record.type}:${action}`, data);
+        } else {
+            audit(`${action}`, data);
+        }
+    }
+}
+
+export default RecordLogger;
