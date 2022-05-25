@@ -10,6 +10,8 @@ const dirTree = require("directory-tree");
  */
 const getPathList = (path, opts) => {
     const tree = dirTree(path, opts);
+    console.log("getPathList.path", path);
+    console.log("getPathList.tree", tree);
     const result = [];
     const getChildren = (res, children) => {
         for (let i = 0; i < children.length; i++) {
