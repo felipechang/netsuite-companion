@@ -4,15 +4,13 @@ const dirTree = require("directory-tree");
 
 /**
  * getPathList: Get list of folder paths
- * @param path
- * @param opts
- * @returns {*[]}
  */
 const getPathList = (path, opts) => {
     const tree = dirTree(path, opts);
-    console.log("getPathList.path", path);
-    console.log("getPathList.tree", tree);
     const result = [];
+    if (!tree) {
+        return result;
+    }
     const getChildren = (res, children) => {
         for (let i = 0; i < children.length; i++) {
             const child = children[i];

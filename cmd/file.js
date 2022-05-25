@@ -29,6 +29,9 @@ const getFolderTree = (path) => {
 
     const tree = dirTree(path);
     const result = {};
+    if (!tree) {
+        return result;
+    }
     result[tree.name] = {};
 
     const getChildren = (res, children) => {
