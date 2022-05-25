@@ -11,7 +11,7 @@ const updateFile = (a, from, to) => {
 }
 
 const unzipSource = (finish) => {
-    fs.createReadStream(path.join(__dirname, "src.zip"))
+    fs.createReadStream(path.join(__dirname, "source.zip"))
         .pipe(unzip.Extract({path: process.cwd()}))
         .on("finish", finish);
 }
