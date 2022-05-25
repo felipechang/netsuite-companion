@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 
+require("dotenv").config();
+
 const inquirer = require("inquirer");
 const fs = require("fs");
 const path = require("path");
 const init = require("./init");
 const folder = require("./folder");
 const file = require("./file");
-require("dotenv").config()
 
 const PROCESS_OPTIONS = [
     "init",

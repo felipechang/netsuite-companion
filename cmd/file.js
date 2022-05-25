@@ -1,7 +1,6 @@
 'use strict';
 
-//Loading dependencies
-require("dotenv").config()
+require("dotenv").config();
 
 const path = require("path");
 const handlebars = require("handlebars");

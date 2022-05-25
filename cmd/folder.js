@@ -1,5 +1,7 @@
 'use strict';
 
+require("dotenv").config();
+
 const path = require("path");
 const fs = require("fs");
 const handlebars = require("handlebars");
@@ -25,6 +27,8 @@ const createFolder = (a) => {
 }
 
 const createReadme = (folderPath, a) => {
+    a.user_name = process.env.USER_NAME;
+    a.user_email = process.env.USER_EMAIL;
     const s = fs.readFileSync(path.join(__dirname, "samples", "README.md.sample"))
     const template = handlebars.compile(String(s));
     fs.writeFileSync(path.join(folderPath, "README.md"), template(a));

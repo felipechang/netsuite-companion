@@ -1,3 +1,20 @@
 ## {{title}}
 
 {{description}}
+
+## App Flow
+
+## App Structure
+
+```bash
+│   README.md
+```
+
+## Custom Records
+
+## Searches
+
+## Scripts
+
+## Author
+{{user_name}} <{{user_email}}>
