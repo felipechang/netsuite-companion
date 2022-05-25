@@ -25,7 +25,7 @@
     /* Ensure non-undefined class properties are initialized in the constructor. This option requires --strictNullChecks be enabled in order to take effect */
     "strictPropertyInitialization": true,
     /* Base directory to resolve non-absolute module names. */
-    "baseUrl": ".",
+    "baseUrl": "../..",
     /* Report errors on unused locals */
     "noUnusedLocals": true,
     /* Report errors on unused parameters. */

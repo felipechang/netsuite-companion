@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const inquirer = require("inquirer");
+const fs = require("fs");
 const path = require("path");
 const init = require("./init");
 const folder = require("./folder");
@@ -23,9 +24,14 @@ if (process.argv[2] !== "init" && (!process.env.COMPANY_NAME || !process.env.USE
 
 switch (process.argv[2]) {
     case "init":
+        if (fs.existsSync(path.join(process.cwd(), ".env"))) {
+            return console.error(".env file already created");
+        }
         inquirer.prompt(init.questions).then((a) => {
             init.unzipSource(() => {
                 init.updateFile(a, ".env.sample", path.join(process.cwd(), ".env"));
+                init.updateFile(a, "tsconfig.json", path.join(process.cwd(), "tsconfig.json"));
+                init.updateFile(a, "suitecloud.config.js", path.join(process.cwd(), "src", "suitecloud.config.js"));
                 init.updateFile(a, "manifest.xml.sample", path.join(process.cwd(), "src", "manifest.xml"));
             });
         });
