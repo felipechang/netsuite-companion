@@ -56,7 +56,7 @@ const getFolderTree = (path) => {
 const createFile = (a) => {
 
     // make file path
-    const fileType = a.type.toLowerCase().replace("-", "").replace(/ /g, "_")
+    const fileType = a.type.toLowerCase().replace("-", "").replace(/ /g, "")
     const fileName = `${process.env.FILE_PREFIX}_${a.name}_${fileType}.ts`;
     const filePath = path.join(paths.suiteScriptPath, ...a.path.split(path.sep), fileName);
 
