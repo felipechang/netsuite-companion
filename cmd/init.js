@@ -4,7 +4,7 @@ const handlebars = require("handlebars");
 const unzip = require("unzipper");
 
 const updateFile = (a, from, to) => {
-    a.prefix = a["company"].substring(0, 3)
+    a.prefix = a["company"].substring(0, 3).toLowerCase();
     const s = fs.readFileSync(path.join(__dirname, "samples", from))
     const template = handlebars.compile(String(s));
     fs.writeFileSync(to, template(a));

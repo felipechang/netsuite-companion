@@ -14,6 +14,8 @@ type RestReturn = string | object;
  * @description: {{ description }}
  * @records: {{ types }}
  *
+ * @NScriptName {{ scriptName }}
+ * @NScriptId {{ scriptId }}
  * @copyright {{ date }} {{ company_name }}
  * @author {{ user_name }} {{ user_email }}
  *

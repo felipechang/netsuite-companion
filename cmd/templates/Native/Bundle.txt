@@ -19,6 +19,8 @@ import onBeforeUninstallContext = EntryPoints.BundleInstallation.onBeforeUninsta
  * @copyright {{ date }} {{ company_name }}
  * @author {{ user_name }} {{ user_email }}
  *
+ * @NScriptName {{ scriptName }}
+ * @NScriptId {{ scriptId }}
  * @NApiVersion 2.x
  * @NModuleScope SameAccount
  * @NScriptType BundleInstallationScript

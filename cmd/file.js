@@ -55,9 +55,12 @@ const getFolderTree = (path) => {
  */
 const createFile = (a) => {
 
+    const snake_name = a.name.toLowerCase().replace(/ /g, "_");
+
     // make file path
     const fileType = a.type.toLowerCase().replace("-", "").replace(/ /g, "")
-    const fileName = `${process.env.FILE_PREFIX}_${a.name}_${fileType}.ts`;
+    const fileSub = `${process.env.FILE_PREFIX.toLowerCase()}_${snake_name}`;
+    const fileName = `${fileSub}_${fileType}.ts`;
     const filePath = path.join(paths.suiteScriptPath, ...a.path.split(path.sep), fileName);
 
     // parse template
@@ -67,11 +70,14 @@ const createFile = (a) => {
     //write file to disk
     fs.writeFileSync(filePath, template({
         description: a.description,
+        scriptName: a.name,
+        scriptId: `customscript_${fileSub}`,
         types: a.types ? a.types.join(", ") : "",
         date: moment(new Date()).format("MM/DD/YYYY"),
         company_name: process.env.COMPANY_NAME,
         user_name: process.env.USER_NAME,
         user_email: process.env.USER_EMAIL,
+        project: process.env.PROJECT_NAME,
         namePascal: a.name.replace(/\w+/g, (w) => w[0].toUpperCase() + w.slice(1).toLowerCase())
     }));
 }
@@ -96,10 +102,6 @@ const questions = [{
     type: "input", name: "name", message: "Enter script name:", validate(s) {
         if (!s) {
             console.error("\nScript name is required");
-            return false;
-        }
-        if (!(new RegExp("^[a-zA-Z_]*$")).test(s)) {
-            console.error("\nInvalid name, use snake case (name_of_file)");
             return false;
         }
         return true;
