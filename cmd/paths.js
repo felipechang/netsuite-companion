@@ -1,7 +1,7 @@
-const path = require("path");
+import path from "path"
+import {fileURLToPath} from 'url';
 
-const suiteScriptPath = path.join(process.cwd(), "src", "FileCabinet", "SuiteScripts")
+export const suiteScriptPath = path.join(process.cwd(), "src", "FileCabinet", "SuiteScripts")
 
-module.exports = {
-    suiteScriptPath
-}
+const __filename = fileURLToPath(import.meta.url);
+export const __dirname = path.dirname(__filename);

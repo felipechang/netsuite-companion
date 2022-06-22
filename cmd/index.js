@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 
-require("dotenv").config();
+import 'dotenv/config'
 
-const inquirer = require("inquirer");
-const fs = require("fs");
-const path = require("path");
-const init = require("./init");
-const folder = require("./folder");
-const file = require("./file");
+import inquirer from "inquirer"
+import fs from "fs"
+import path from "path"
+
+import * as init from "./init.js"
+import * as folder from "./folder.js"
+import * as file from "./file.js"
 
 const PROCESS_OPTIONS = [
     "init",
@@ -16,17 +17,17 @@ const PROCESS_OPTIONS = [
 ];
 
 if (!process.argv[2] || PROCESS_OPTIONS.indexOf(process.argv[2]) === -1) {
-    return console.error("use a netsuite-companion option (init/folder/file)");
+    throw "use a netsuite-companion option (init/folder/file)";
 }
 
 if (process.argv[2] !== "init" && (!process.env.COMPANY_NAME || !process.env.USER_NAME || !process.env.USER_EMAIL)) {
-    return console.error("Run init first: netsuite-companion init");
+    throw "run init first: netsuite-companion init";
 }
 
 switch (process.argv[2]) {
     case "init":
         if (fs.existsSync(path.join(process.cwd(), ".env"))) {
-            return console.error(".env file already created");
+            throw ".env file already created";
         }
         inquirer.prompt(init.questions).then((a) => {
             init.unzipSource(() => {

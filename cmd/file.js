@@ -1,14 +1,15 @@
 'use strict';
 
-require("dotenv").config();
+import 'dotenv/config'
 
-const path = require("path");
-const handlebars = require("handlebars");
-const fs = require("fs");
-const moment = require("moment");
-const dirTree = require("directory-tree");
-const getPathList = require("./pathList");
-const paths = require("./paths");
+import path from "path"
+import handlebars from "handlebars"
+import fs from "fs"
+import moment from "moment"
+import dirTree from "directory-tree"
+
+import getPathList from "./pathList.js"
+import {__dirname, suiteScriptPath} from "./paths.js"
 
 const getRecordTypeList = () => {
     return JSON.parse(fs.readFileSync(path.join(__dirname, "record_types.json")))
@@ -53,7 +54,7 @@ const getFolderTree = (path) => {
  * createFile: creates a file on a specified location
  * @param a
  */
-const createFile = (a) => {
+export const createFile = (a) => {
 
     const snake_name = a.name.toLowerCase().replace(/ /g, "_");
 
@@ -61,7 +62,7 @@ const createFile = (a) => {
     const fileType = a.type.toLowerCase().replace("-", "").replace(/ /g, "")
     const fileSub = `${process.env.FILE_PREFIX.toLowerCase()}_${snake_name}`;
     const fileName = `${fileSub}_${fileType}.ts`;
-    const filePath = path.join(paths.suiteScriptPath, ...a.path.split(path.sep), fileName);
+    const filePath = path.join(suiteScriptPath, ...a.path.split(path.sep), fileName);
 
     // parse template
     const s = fs.readFileSync(path.join(__dirname, "templates", a.category, `${a.type}.txt`))
@@ -86,13 +87,12 @@ const createFile = (a) => {
 const templateTree = getFolderTree(path.join(__dirname, "templates"));
 
 // SuiteScript folder
-const pathList = getPathList(paths.suiteScriptPath, {});
+const pathList = getPathList(suiteScriptPath, {});
 if (pathList.length === 0) {
-    console.error("Creating project at SuiteScript root");
-    return;
+    console.log("creating project at SuiteScript root");
 }
 
-const questions = [{
+export const questions = [{
     type: "list", name: "category", message: "Select category:", choices: Object.keys(templateTree["templates"])
 }, {
     type: "list", name: "type", message: "Select script type:", choices: (a) => {
@@ -120,8 +120,3 @@ const questions = [{
 }, {
     type: "list", name: "path", message: "Select folder:", choices: pathList
 }];
-
-module.exports = {
-    questions: questions,
-    createFile: createFile,
-}

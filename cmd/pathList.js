@@ -1,6 +1,6 @@
 'use strict';
 
-const dirTree = require("directory-tree");
+import dirTree from "directory-tree"
 
 /**
  * getPathList: Get list of folder paths
@@ -29,4 +29,4 @@ const getPathList = (path, opts) => {
 }
 
 
-module.exports = getPathList
+export default getPathList;

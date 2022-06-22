@@ -1,18 +1,20 @@
 'use strict';
 
-require("dotenv").config();
+import 'dotenv/config'
 
-const path = require("path");
-const fs = require("fs");
-const handlebars = require("handlebars");
-const getPathList = require("./pathList");
-const paths = require("./paths");
+import path from "path"
+import handlebars from "handlebars"
+import fs from "fs"
+
+import getPathList from "./pathList.js"
+import {__dirname, suiteScriptPath} from "./paths.js"
 
 // SuiteScript folder
-const pathList = getPathList(paths.suiteScriptPath, {});
+const pathList = getPathList(suiteScriptPath, {});
 
 const createFolder = (a) => {
     let folderPath = path.join(process.cwd(), "src", "FileCabinet");
+    console.log("folderPath", folderPath);
     if (a.folder) {
         folderPath = path.join(folderPath, "SuiteScripts", a.folder, a.title);
         if (fs.existsSync(folderPath)) {
@@ -34,14 +36,14 @@ const createReadme = (folderPath, a) => {
     fs.writeFileSync(path.join(folderPath, "README.md"), template(a));
 }
 
-const createProject = (a) => {
+export const createProject = (a) => {
     const folderPath = createFolder(a);
     if (a["readme"]) {
         createReadme(folderPath, a);
     }
 }
 
-const questions = [{
+export const questions = [{
     type: "list",
     name: "folder",
     message: "Enter folder path:",
@@ -70,8 +72,3 @@ const questions = [{
     default: () => "No description provided",
     when: (a) => a["readme"]
 }];
-
-module.exports = {
-    createProject: createProject,
-    questions: questions,
-}

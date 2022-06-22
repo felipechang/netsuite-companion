@@ -1,7 +1,8 @@
 {
   "name": "netsuite-companion",
   "description": "Scaffold to standardize NetSuite account customizations",
-  "version": "1.0.8",
+  "type": "module",
+  "version": "1.0.9",
   "author": {
     "name": "Felipe Chang",
     "email": "felipechang@hardcake.org"

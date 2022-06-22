@@ -1,22 +1,24 @@
-const path = require("path");
-const fs = require("fs");
-const handlebars = require("handlebars");
-const unzip = require("unzipper");
+import path from "path"
+import handlebars from "handlebars"
+import fs from "fs"
+import unzip from "unzipper"
 
-const updateFile = (a, from, to) => {
+import {__dirname} from "./paths.js";
+
+export const updateFile = (a, from, to) => {
     a.prefix = a["company"].substring(0, 3).toLowerCase();
     const s = fs.readFileSync(path.join(__dirname, "samples", from))
     const template = handlebars.compile(String(s));
     fs.writeFileSync(to, template(a));
 }
 
-const unzipSource = (finish) => {
+export const unzipSource = (finish) => {
     fs.createReadStream(path.join(__dirname, "source.zip"))
         .pipe(unzip.Extract({path: process.cwd()}))
         .on("finish", finish);
 }
 
-const questions = [{
+export const questions = [{
     type: "input",
     name: "company",
     message: "Enter company name:",
@@ -65,10 +67,3 @@ const questions = [{
         return true;
     }
 }];
-
-
-module.exports = {
-    questions: questions,
-    unzipSource: unzipSource,
-    updateFile: updateFile,
-}
