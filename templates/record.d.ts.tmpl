@@ -1,0 +1,5 @@
+import {Record} from "N/record";
+
+export interface {{name}} extends Omit<Record, 'getValue' | 'setValue' | 'getLineCount' | 'getSublistValue' | 'getCurrentSublistValue' | 'setSublistValue' | 'setCurrentSublistValue' | 'findSublistLineWithValue'> {
+{{methods}}
+}

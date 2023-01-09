@@ -1,0 +1,44 @@
+{
+  "name": "netsuite-companion",
+  "description": "NetSuite account customizations scaffold",
+  "type": "module",
+  "version": "1.0.0",
+  "author": {
+    "name": "Felipe Chang",
+    "email": "felipechang@hardcake.org"
+  },
+  "keywords": [
+    "netsuite",
+    "sdf",
+    "typescript",
+    "suitescript",
+    "suitecloud",
+    "stubs"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "nsc": "index.js"
+  },
+  "dependencies": {
+    "@types/moment": "^2.13.0",
+    "cheerio": "^1.0.0-rc.12",
+    "directory-tree": "^3.5.1",
+    "dotenv": "^16.0.3",
+    "handlebars": "^4.7.7",
+    "inquirer": "^9.1.4",
+    "moment": "^2.29.4",
+    "typescript": "^4.9.4",
+    "unzipper": "^0.10.11",
+    "xml-js": "^1.6.11"
+  },
+  "devDependencies": {
+    "@hitc/netsuite-types": "^2022.2.14",
+    "@types/cheerio": "^0.22.31",
+    "@types/handlebars": "^4.1.0",
+    "@types/inquirer": "^9.0.3",
+    "@types/node": "^18.11.18",
+    "@types/unzipper": "^0.10.5"
+  }
+}
