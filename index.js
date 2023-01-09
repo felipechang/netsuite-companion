@@ -41,7 +41,7 @@ const [, , first, second, third] = process.argv;
             yield addProject.run();
             break;
         case "add:script":
-            yield addScript.run();
+            yield addScript.run(third);
             break;
         case "add:types":
             yield addTypes.run();

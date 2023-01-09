@@ -5,6 +5,7 @@ import path from "path";
 export const updateRecord = (name: string, data: any) => {
     fs.existsSync(paths.home.root) || fs.mkdirSync(paths.home.root, {recursive: true});
     fs.writeFileSync(path.join(paths.home.root, name), JSON.stringify(data));
+    console.log("User preferences saved in home folder");
 }
 export const getRecord = (name: string): IPageRecord | IStorage => {
     fs.existsSync(paths.home.root) || fs.mkdirSync(paths.home.root, {recursive: true});

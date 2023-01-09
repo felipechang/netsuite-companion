@@ -36,7 +36,7 @@ const [, , first, second, third] = process.argv;
             await addProject.run();
             break;
         case "add:script":
-            await addScript.run();
+            await addScript.run(third);
             break;
         case "add:types":
             await addTypes.run();

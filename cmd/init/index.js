@@ -115,12 +115,13 @@ export const run = () => __awaiter(void 0, void 0, void 0, function* () {
         return;
     }
     const answer = yield inquirer.prompt(questions);
+    console.log("Deployment starting");
     answer.name = answer.name || storage.name;
     answer.email = answer.email || storage.email;
     answer.prefix = answer.prefix || storage.prefix;
     answer.vendor = answer.vendor || storage.vendor;
     answer.lang = answer.lang || storage.lang;
-    deploy(answer);
     if (answer.store)
         updateRecord(STORAGE_FILE, answer);
+    deploy(answer);
 });

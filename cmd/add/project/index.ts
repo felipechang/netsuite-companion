@@ -37,7 +37,6 @@ export const run = async () => {
         return;
     }
     fs.mkdirSync(folderPath);
-    // TODO improve readme with best practices
     if (answer.readme) {
         answer.user_name = process.env.USER_NAME;
         answer.user_email = process.env.USER_EMAIL;

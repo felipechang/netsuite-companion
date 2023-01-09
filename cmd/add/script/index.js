@@ -24,7 +24,7 @@ const ScriptOptions = {
     "User Event": "userevent",
     "Workflow Action": "workflowaction",
 };
-export const run = () => __awaiter(void 0, void 0, void 0, function* () {
+export const run = (third) => __awaiter(void 0, void 0, void 0, function* () {
     const dirPaths = yield readDirectoryChoices(paths.client.src.FileCabinet.SuiteScripts.root);
     const choices = dirPaths.filter((choice) => choice.children).map((choice) => choice.path);
     choices.shift();
@@ -70,5 +70,5 @@ export const run = () => __awaiter(void 0, void 0, void 0, function* () {
             message: "Select folder:",
             choices,
         }]);
-    yield advanced(ScriptOptions[answer.type], answer);
+    yield advanced(ScriptOptions[answer.type], answer, third === "no-deploy");
 });

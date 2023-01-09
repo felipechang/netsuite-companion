@@ -46,7 +46,7 @@ export const simple = (fileName, suffix) => __awaiter(void 0, void 0, void 0, fu
     answer.name = `${prefix.toLowerCase()}_${answer.name}${suf}`;
     yield printTemplate(fileName, answer.path, `${answer.name}.ts`, answer, true);
 });
-export const advanced = (fileType, answer) => __awaiter(void 0, void 0, void 0, function* () {
+export const advanced = (fileType, answer, noDeploy) => __awaiter(void 0, void 0, void 0, function* () {
     const prefix = process.env.FILE_PREFIX || "";
     const snake_name = answer.name.toLowerCase().replace(/ /g, "_");
     const fileSub = `${prefix.toLowerCase()}_${snake_name}`;
@@ -54,5 +54,7 @@ export const advanced = (fileType, answer) => __awaiter(void 0, void 0, void 0, 
     answer.scriptId = `customscript_${fileSub}`;
     answer.scriptName = answer.name;
     yield printTemplate(`${fileType}.tmpl`, answer.path, `${fileName}.ts`, answer, true);
-    yield printScriptTemplate(`${fileType}.xml.tmpl`, fileSub, answer);
+    if (!noDeploy) {
+        yield printScriptTemplate(`${fileType}.xml.tmpl`, fileSub, answer);
+    }
 });

@@ -1,20 +1,20 @@
 NAME
-    nsc - NetSuite companion tool
+    nsc - NetSuite account customization assistant
 
 SYNOPSIS
-    nsc subcommand-1 [--option-1 <variable-name>]
-                         --option-2 (enum-1|enum-2|enum-3)
-                         [--verbose] [--debug] <naked-variable>
 
+    nsc init - Initialize a new project on the current folder
 
-    nsc subcommand-2
-
-
-SEE ALSO
-    * npm docs
-    * npm home
-    * https://www.npmjs.org/
+    nsc import record [url] - Import a record definition from cache or URL the NetSuite Record Browser
     
-ABOUT
-    Manon will concatenate sibling lines into one line. 
-    If the concatenated line is too long
+    rebuild - Rebuild type definitions for custom records, fields, and sublists in the Objects folder
+    
+    nsc add project - Add a new project folder and README.md file to the vendor folder
+    
+    nsc add script - Select a NetSuite script to generate .ts and .xml files. Use the `no-deploy` flag to skip creating the .xml
+    
+    nsc add types - Add a types.d.ts file to the project
+    
+    nsc add api - Add an API class file to interface with third party systems
+    
+    nsc add module - Add a custom module file to the project

@@ -39,7 +39,7 @@ export const simple = async (fileName: string, suffix: string) => {
     await printTemplate(fileName, answer.path, `${answer.name}.ts`, answer, true);
 }
 
-export const advanced = async (fileType: string, answer: any) => {
+export const advanced = async (fileType: string, answer: any, noDeploy: boolean) => {
     const prefix = process.env.FILE_PREFIX || "";
     const snake_name = answer.name.toLowerCase().replace(/ /g, "_");
     const fileSub = `${prefix.toLowerCase()}_${snake_name}`;
@@ -47,5 +47,7 @@ export const advanced = async (fileType: string, answer: any) => {
     answer.scriptId = `customscript_${fileSub}`;
     answer.scriptName = answer.name;
     await printTemplate(`${fileType}.tmpl`, answer.path, `${fileName}.ts`, answer, true);
-    await printScriptTemplate(`${fileType}.xml.tmpl`, fileSub, answer);
+    if (!noDeploy) {
+        await printScriptTemplate(`${fileType}.xml.tmpl`, fileSub, answer);
+    }
 }

@@ -18,7 +18,7 @@ const ScriptOptions: { [key: string]: string } = {
     "Workflow Action": "workflowaction",
 }
 
-export const run = async () => {
+export const run = async (third: string) => {
     const dirPaths = await readDirectoryChoices(paths.client.src.FileCabinet.SuiteScripts.root);
     const choices = dirPaths.filter((choice) => choice.children).map((choice) => choice.path);
     choices.shift();
@@ -65,5 +65,5 @@ export const run = async () => {
         choices,
     }]);
 
-    await advanced(ScriptOptions[answer.type], answer);
+    await advanced(ScriptOptions[answer.type], answer, third === "no-deploy");
 }

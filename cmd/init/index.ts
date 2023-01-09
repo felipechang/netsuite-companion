@@ -109,14 +109,14 @@ export const run = async () => {
         console.error(".env file already created");
         return;
     }
-
     const answer: InitAnswer = await inquirer.prompt(questions);
+    console.log("Deployment starting");
     answer.name = answer.name || storage.name;
     answer.email = answer.email || storage.email;
     answer.prefix = answer.prefix || storage.prefix;
     answer.vendor = answer.vendor || storage.vendor;
     answer.lang = answer.lang || storage.lang;
 
-    deploy(answer);
     if (answer.store) updateRecord(STORAGE_FILE, answer);
+    deploy(answer);
 }
