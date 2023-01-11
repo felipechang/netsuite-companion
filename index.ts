@@ -38,7 +38,7 @@ const [, , first, second, third] = process.argv;
         case "add:script":
             await addScript.run(third);
             break;
-        case "add:types":
+        case "add:type":
             await addTypes.run();
             break;
         case "import:record":

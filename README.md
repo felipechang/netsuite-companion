@@ -29,7 +29,7 @@ the [NetSuite Record Browser](https://system.netsuite.com/help/helpcenter/en_US/
 
 `nsc add script` - Select a NetSuite script to generate .ts and .xml files. Use the `no-deploy` flag to skip creating the .xml
 
-`nsc add types` - Add a types.d.ts file to the project
+`nsc add type` - Add a types.d.ts file to the project
 
 `nsc add api` - Add an API class file to interface with third party systems
 

@@ -43,7 +43,7 @@ const [, , first, second, third] = process.argv;
         case "add:script":
             yield addScript.run(third);
             break;
-        case "add:types":
+        case "add:type":
             yield addTypes.run();
             break;
         case "import:record":

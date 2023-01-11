@@ -45,7 +45,7 @@ export const advanced = async (fileType: string, answer: any, noDeploy: boolean)
     const fileSub = `${prefix.toLowerCase()}_${snake_name}`;
     const fileName = `${fileSub}_${fileType}`;
     answer.scriptId = `customscript_${fileSub}`;
-    answer.scriptName = answer.name;
+    answer.scriptName = fileName;
     await printTemplate(`${fileType}.tmpl`, answer.path, `${fileName}.ts`, answer, true);
     if (!noDeploy) {
         await printScriptTemplate(`${fileType}.xml.tmpl`, fileSub, answer);
