@@ -54,6 +54,12 @@ export const nsCast = (type: string): any => {
     switch (type.toUpperCase()) {
         case "TEXT":
             return "string";
+        case "STRING":
+            return "string";
+        case "RICHTEXT":
+            return "string";
+        case "CLOBTEXT":
+            return "string";
         case "SELECT":
             return "string";
         case "TEXTAREA":
