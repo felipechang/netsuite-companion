@@ -72,6 +72,8 @@ export const nsCast = (type) => {
             return "string";
         case "CHECKBOX":
             return "boolean";
+        case "BOOLEAN":
+            return "boolean";
         case "DATE":
             return "Date";
         case "DATETIME":

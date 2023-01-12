@@ -50,7 +50,7 @@ export const printScriptTemplate = (fileName: string, outFile: string, answer: a
     });
 }
 
-export const nsCast = (type: string): any => {
+export const nsCast = (type: string): string => {
     switch (type.toUpperCase()) {
         case "TEXT":
             return "string";
@@ -73,6 +73,8 @@ export const nsCast = (type: string): any => {
         case "RTEXT":
             return "string";
         case "CHECKBOX":
+            return "boolean";
+        case "BOOLEAN":
             return "boolean";
         case "DATE":
             return "Date";

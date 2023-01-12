@@ -1,13 +1,20 @@
 import {nsCast} from "./util.js";
 
+const addGetMethodField = (methods: string[], fieldId: string, value: string): void => {
+    methods.push(`    getValue(fieldId: '${fieldId}'): ${value};`);
+    methods.push(`    getValue(options: { fieldId: '${fieldId}' }): ${value};`);
+}
+const addSetMethodField = (methods: string[], fieldId: string, value: string): void => {
+    methods.push(`    setValue(fieldId: '${fieldId}', value: ${value}): this;`);
+    methods.push(`    setValue(options: { fieldId: '${fieldId}', value: ${value} } & Extras): this;`);
+}
+
 export const buildTypeDefinition = (pageRecord: IPageRecord): string => {
     const methods: string[] = [];
     for (let i = 0; i < pageRecord.fields.length; i++) {
         const node = pageRecord.fields[i];
-        methods.push(`    getValue(fieldId: '${node.id}'): ${nsCast(node.type)};`);
-        methods.push(`    getValue(options: { fieldId: '${node.id}' }): ${nsCast(node.type)};`);
-        methods.push(`    setValue(fieldId: '${node.id}', value: ${nsCast(node.type)}): this;`);
-        methods.push(`    setValue(options: { fieldId: '${node.id}', value: ${nsCast(node.type)} } & Extras): this;`);
+        addGetMethodField(methods, node.id, nsCast(node.type));
+        addSetMethodField(methods, node.id, nsCast(node.type));
     }
     for (const name in pageRecord.subLists) {
         for (let j = 0; j < pageRecord.subLists[name].length; j++) {
@@ -24,5 +31,9 @@ export const buildTypeDefinition = (pageRecord: IPageRecord): string => {
             methods.push(`    findSublistLineWithValue(options: { sublistId: '${name}', fieldId: '${node.id}', value: ${nsCast(node.type)} }): number;`);
         }
     }
+    addGetMethodField(methods, "isinactive", "boolean");
+    addSetMethodField(methods, "isinactive", "boolean");
+    addGetMethodField(methods, "created", "Date");
+    addGetMethodField(methods, "lastmodified", "Date");
     return methods.join("\n");
 }
