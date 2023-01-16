@@ -16,6 +16,7 @@ interface Customrecordtype {
     _attributes: Attributes;
     fieldtype: TextField;
     label: TextField;
+    recordname: TextField;
     customrecordcustomfields: Customrecordcustomfields;
 }
 export interface IXmlField {

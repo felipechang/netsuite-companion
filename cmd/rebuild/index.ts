@@ -31,7 +31,7 @@ const processXml = (xmlData: string): IPageRecord => {
         record.type = typeName;
         if (typeName === "customrecordtype") {
             jsonData.customrecordtype.customrecordcustomfields.customrecordcustomfield.forEach((field) => {
-                record.name = field.label._text;
+                record.name = jsonData.customrecordtype.recordname._text;
                 record.fields.push({
                     id: field._attributes.scriptid,
                     type: nsCast(field.fieldtype._text),

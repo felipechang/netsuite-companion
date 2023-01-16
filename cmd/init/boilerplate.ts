@@ -20,11 +20,6 @@ export const deploy = (answer: InitAnswer) => {
                 await printTemplate("manifest.xml.tmpl", paths.client.src.root, "manifest.xml", answer, false);
                 console.log("Syncing package.json version...");
                 fs.mkdirSync(path.join(paths.client.src.FileCabinet.SuiteScripts.root, answer.vendor), {recursive: true});
-                const pkg = JSON.parse(String(fs.readFileSync(path.join(paths.app.root, "package.json"))));
-                const deployPkg = path.join(paths.client.root, "package.json");
-                const contents = String(fs.readFileSync(deployPkg));
-                const template = handlebars.compile(contents);
-                fs.writeFileSync(deployPkg, template(pkg));
                 console.log("Deployment complete");
             }, UNZIP_TIMEOUT);
         });
