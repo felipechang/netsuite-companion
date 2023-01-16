@@ -20,11 +20,11 @@ import fs from "fs";
   Example URL
   https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2022_2/script/record/account.html
  */
-const getUrlRecord = (url) => __awaiter(void 0, void 0, void 0, function* () {
+const getUrlRecord = (url, recreate) => __awaiter(void 0, void 0, void 0, function* () {
     const lastEl = url.split("/").pop();
     const outFile = lastEl.split(".")[0];
     let pageRecord = getRecord(`${outFile}.json`);
-    if (!pageRecord) {
+    if (!pageRecord || recreate) {
         pageRecord = yield queryRecord(url);
         updateRecord(`${outFile}.json`, pageRecord);
     }
@@ -69,7 +69,7 @@ export const run = (third) => __awaiter(void 0, void 0, void 0, function* () {
         console.error("\nRecord URL is not valid");
         return;
     }
-    const pageRecord = url ? yield getUrlRecord(url) : JSON.parse(fs.readFileSync(filePath, "utf8"));
+    const pageRecord = url ? yield getUrlRecord(url, !!third) : JSON.parse(fs.readFileSync(filePath, "utf8"));
     const methods = buildTypeDefinition(pageRecord);
     const outPath = path.join(paths.client.models.records, pageRecord.type);
     yield printTemplate("record.d.ts.tmpl", outPath, pageRecord.id + ".d.ts", {

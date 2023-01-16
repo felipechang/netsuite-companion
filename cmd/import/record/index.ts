@@ -13,11 +13,11 @@ import fs from "fs";
   https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2022_2/script/record/account.html
  */
 
-const getUrlRecord = async (url: string): Promise<IPageRecord> => {
+const getUrlRecord = async (url: string, recreate: boolean): Promise<IPageRecord> => {
     const lastEl = url.split("/").pop() as string;
     const outFile = lastEl.split(".")[0];
     let pageRecord = getRecord(`${outFile}.json`) as IPageRecord;
-    if (!pageRecord) {
+    if (!pageRecord || recreate) {
         pageRecord = await queryRecord(url);
         updateRecord(`${outFile}.json`, pageRecord);
     }
@@ -64,7 +64,7 @@ export const run = async (third: string) => {
         console.error("\nRecord URL is not valid");
         return;
     }
-    const pageRecord = url ? await getUrlRecord(url) : JSON.parse(fs.readFileSync(filePath, "utf8")) as IPageRecord;
+    const pageRecord = url ? await getUrlRecord(url, !!third) : JSON.parse(fs.readFileSync(filePath, "utf8")) as IPageRecord;
     const methods = buildTypeDefinition(pageRecord);
     const outPath = path.join(paths.client.models.records, pageRecord.type);
     await printTemplate("record.d.ts.tmpl", outPath, pageRecord.id + ".d.ts", {
