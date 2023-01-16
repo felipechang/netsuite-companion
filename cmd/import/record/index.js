@@ -65,7 +65,7 @@ export const run = (third) => __awaiter(void 0, void 0, void 0, function* () {
         url = answer.url;
         filePath = answer.path;
     }
-    if (url && !url.includes("https://system.netsuite.com/help/helpcenter/en_US/srbrowser")) {
+    if (url && !url.includes("/help/helpcenter/en_US/srbrowser/")) {
         console.error("\nRecord URL is not valid");
         return;
     }
