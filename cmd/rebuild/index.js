@@ -34,13 +34,22 @@ const processXml = (xmlData) => {
         record.id = jsonData[typeName]._attributes.scriptid;
         record.type = typeName;
         if (typeName === "customrecordtype") {
-            jsonData.customrecordtype.customrecordcustomfields.customrecordcustomfield.forEach((field) => {
+            if (Array.isArray(jsonData.customrecordtype.customrecordcustomfields.customrecordcustomfield)) {
+                jsonData.customrecordtype.customrecordcustomfields.customrecordcustomfield.forEach((field) => {
+                    record.name = jsonData.customrecordtype.recordname._text;
+                    record.fields.push({
+                        id: field._attributes.scriptid,
+                        type: nsCast(field.fieldtype._text),
+                    });
+                });
+            }
+            else {
                 record.name = jsonData.customrecordtype.recordname._text;
                 record.fields.push({
-                    id: field._attributes.scriptid,
-                    type: nsCast(field.fieldtype._text),
+                    id: jsonData.customrecordtype.customrecordcustomfields.customrecordcustomfield._attributes.scriptid,
+                    type: nsCast(jsonData.customrecordtype.customrecordcustomfields.customrecordcustomfield.fieldtype._text),
                 });
-            });
+            }
         }
         else {
             record.name = jsonData[typeName].label._text;

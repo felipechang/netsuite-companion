@@ -10,7 +10,7 @@ interface Customrecordcustomfield {
     label: TextField;
 }
 interface Customrecordcustomfields {
-    customrecordcustomfield: Customrecordcustomfield[];
+    customrecordcustomfield: Customrecordcustomfield[] | Customrecordcustomfield;
 }
 interface Customrecordtype {
     _attributes: Attributes;
