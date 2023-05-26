@@ -71,8 +71,12 @@ const processXml = (xmlData: string): IPageRecord => {
 }
 
 export const run = async () => {
+    console.log("Rebuilding TypeScript Definitions");
     const lists = records.concat(fields.concat(sublists));
     const filePaths = await readDirectoryChoices(paths.client.src.Objects.root);
+
+    console.log("filePaths", filePaths);
+
     if (filePaths.length === 0) {
         console.error("No files found");
         return;

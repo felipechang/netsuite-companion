@@ -34,3 +34,8 @@ the [NetSuite Record Browser](https://system.netsuite.com/help/helpcenter/en_US/
 `nsc add api` - Add an API class file to interface with third party systems
 
 `nsc add module` - Add a custom module file to the project
+
+## TODO
+- Add RESTlet testing framework
+- Add opencommit to pipeline
+- Add deploy commands with SDF

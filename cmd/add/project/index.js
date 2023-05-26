@@ -18,6 +18,7 @@ export const run = () => __awaiter(void 0, void 0, void 0, function* () {
             type: "input",
             name: "title",
             message: "Enter project name:",
+            default: () => process.env.PROJECT_NAME,
             validate(answer) {
                 if (!answer) {
                     console.error("\nProject name is required");

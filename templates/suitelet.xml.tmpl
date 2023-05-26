@@ -1,14 +1,14 @@
-<suitelet scriptid="customscript_clr_integracion_backend_log">
-  <description>Lee logs para trabajos de integracion</description>
+<suitelet scriptid="{{scriptId}}">
+  <description>{{description}}</description>
   <isinactive>F</isinactive>
-  <name>Integracion Backend - Logs</name>
+  <name>{{name}}</name>
   <notifyadmins>F</notifyadmins>
   <notifyemails></notifyemails>
   <notifyowner>T</notifyowner>
   <notifyuser>F</notifyuser>
-  <scriptfile>[/SuiteScripts/Cloud River/Integracion Backend/integration_task/clr_integracion_backend_logs_suitelet.js]</scriptfile>
+  <scriptfile>[{{scriptfile}}]</scriptfile>
   <scriptdeployments>
-    <scriptdeployment scriptid="customdeploy_clr_integracion_backend_log">
+    <scriptdeployment scriptid="{{deploymentId}}">
       <allemployees>T</allemployees>
       <allpartners>F</allpartners>
       <allroles>F</allroles>
@@ -19,7 +19,7 @@
       <loglevel>ERROR</loglevel>
       <runasrole>ADMINISTRATOR</runasrole>
       <status>RELEASED</status>
-      <title>Integracion Backend - Logs</title>
+      <title>{{name}}</title>
     </scriptdeployment>
   </scriptdeployments>
 </suitelet>

@@ -52,6 +52,7 @@ export const advanced = (fileType, answer, noDeploy) => __awaiter(void 0, void 0
     const fileSub = `${prefix.toLowerCase()}_${snake_name}`;
     const fileName = `${fileSub}_${fileType}`;
     answer.scriptId = `customscript_${fileSub}`;
+    answer.deploymentId = `customscript_${fileSub}`;
     answer.scriptName = fileName;
     yield printTemplate(`${fileType}.tmpl`, answer.path, `${fileName}.ts`, answer, true);
     if (!noDeploy) {

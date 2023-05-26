@@ -94,9 +94,11 @@ export const nsCast = (type) => {
     }
 };
 export const formatFileName = (name) => {
+    name = name.replace(/\s+/g, ' ');
     const nArr = name.split(" ");
     for (let i = 0; i < nArr.length; i++) {
         nArr[i] = nArr[i][0].toUpperCase() + nArr[i].substring(1, nArr[i].length).toLowerCase();
+        nArr[i] = nArr[i].replace(/[^a-zA-Z0-9]/g, "");
     }
     return nArr.join("");
 };

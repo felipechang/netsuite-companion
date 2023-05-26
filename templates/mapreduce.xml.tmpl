@@ -1,38 +1,9 @@
-<mapreducescript scriptid="customscript_clr_cambio_nuevo_cliente_mr">
-  <description>Crea copia de proyecto y subproyectos para nuevo cliente</description>
+<mapreducescript scriptid="{{scriptId}}">
+  <description>{{description}}</description>
   <isinactive>F</isinactive>
-  <name>Cambio Nuevo Cliente - Proceso</name>
+  <name>{{name}}</name>
   <notifyadmins>F</notifyadmins>
   <notifyemails></notifyemails>
   <notifyowner>T</notifyowner>
-  <scriptfile>[/SuiteScripts/Cloud River/Control de Projectos/Project/Cambio Nuevo Cliente/clr_cambio_nuevo_cliente_mapreduce.js]</scriptfile>
-  <scriptcustomfields>
-    <scriptcustomfield scriptid="custscript_clr_cambio_nuevo_cliente_mr_c">
-      <accesslevel>2</accesslevel>
-      <applyformatting>F</applyformatting>
-      <checkspelling>F</checkspelling>
-      <defaultchecked>F</defaultchecked>
-      <defaultselection></defaultselection>
-      <defaultvalue></defaultvalue>
-      <description>ID de nuevo cliente para crear proyectos</description>
-      <displayheight></displayheight>
-      <displaytype>NORMAL</displaytype>
-      <displaywidth></displaywidth>
-      <dynamicdefault></dynamicdefault>
-      <fieldtype>SELECT</fieldtype>
-      <help>ID de nuevo cliente para crear proyectos</help>
-      <isformula>F</isformula>
-      <ismandatory>F</ismandatory>
-      <label>Nuevo Cliente</label>
-      <linktext></linktext>
-      <maxlength></maxlength>
-      <maxvalue></maxvalue>
-      <minvalue></minvalue>
-      <onparentdelete>SET_NULL</onparentdelete>
-      <searchlevel>2</searchlevel>
-      <selectrecordtype>-2</selectrecordtype>
-      <setting></setting>
-      <storevalue>T</storevalue>
-    </scriptcustomfield>
-  </scriptdeployments>
+  <scriptfile>[{{scriptfile}}]</scriptfile>
 </mapreducescript>

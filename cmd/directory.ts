@@ -14,5 +14,5 @@ export const readDirectoryChoices = async (rootPath: string): Promise<DirectoryT
     const files: DirectoryTree[] = [];
     if (!tree) return files;
     if (tree.children) getChildren(files, tree.children);
-    return files;
+    return files.filter((f) => f.path.includes(".")); // only files
 }

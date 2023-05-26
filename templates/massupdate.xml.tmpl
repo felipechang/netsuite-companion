@@ -1,23 +1,10 @@
-<massupdatescript scriptid="customscript_jira_refresh">
-  <description>Re-processes any action items without a JIRA ID</description>
+<massupdatescript scriptid="{{scriptId}}">
+  <description>{{description}}</description>
   <isinactive>F</isinactive>
-  <name>Implementation Bundle - Jira Refresh</name>
+  <name>{{name}}</name>
   <notifyadmins>F</notifyadmins>
   <notifyemails></notifyemails>
   <notifyowner>T</notifyowner>
   <notifyuser>F</notifyuser>
-  <scriptfile>[/SuiteScripts/Cloud River/Jira Integration/clr_jira_integration_refresh_massupdate.js]</scriptfile>
-  <scriptdeployments>
-    <scriptdeployment scriptid="customdeploy_jira_refresh">
-      <allemployees>T</allemployees>
-      <allpartners>F</allpartners>
-      <allroles>F</allroles>
-      <audslctrole></audslctrole>
-      <isdeployed>T</isdeployed>
-      <loglevel>ERROR</loglevel>
-      <recordtype>[scriptid=customrecord_ns_ps_mfg_action_items]</recordtype>
-      <runasrole></runasrole>
-      <status>RELEASED</status>
-    </scriptdeployment>
-  </scriptdeployments>
+  <scriptfile>[{{scriptfile}}]</scriptfile>
 </massupdatescript>

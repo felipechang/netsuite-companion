@@ -10,6 +10,7 @@ export const run = async () => {
         type: "input",
         name: "title",
         message: "Enter project name:",
+        default: () => process.env.PROJECT_NAME,
         validate(answer: string) {
             if (!answer) {
                 console.error("\nProject name is required");

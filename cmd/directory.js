@@ -25,5 +25,5 @@ export const readDirectoryChoices = (rootPath) => __awaiter(void 0, void 0, void
         return files;
     if (tree.children)
         getChildren(files, tree.children);
-    return files;
+    return files.filter((f) => f.path.includes(".")); // only files
 });

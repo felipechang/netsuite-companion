@@ -27,18 +27,18 @@
     "directory-tree": "^3.5.1",
     "dotenv": "^16.0.3",
     "handlebars": "^4.7.7",
-    "inquirer": "^9.2.2",
+    "inquirer": "^9.2.6",
     "moment": "^2.29.4",
     "typescript": "^5.0.4",
-    "unzipper": "^0.10.11",
+    "unzipper": "^0.10.14",
     "xml-js": "^1.6.11"
   },
   "devDependencies": {
-    "@hitc/netsuite-types": "^2023.1.8",
+    "@hitc/netsuite-types": "^2023.1.9",
     "@types/cheerio": "^0.22.31",
     "@types/handlebars": "^4.1.0",
     "@types/inquirer": "^9.0.3",
-    "@types/node": "^20.1.1",
+    "@types/node": "^20.2.4",
     "@types/unzipper": "^0.10.6"
   }
 }

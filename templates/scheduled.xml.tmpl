@@ -1,51 +1,21 @@
-<scheduledscript scriptid="customscript_clr_copia_proyectos_hijo_sc">
-  <description>Abre y guarda BLT Gestion documentos</description>
+<scheduledscript scriptid="{{scriptId}}">
+  <description>{{description}}</description>
   <isinactive>F</isinactive>
-  <name>Copia en Proyectos Hijo - Diferido</name>
+  <name>{{name}}</name>
   <notifyadmins>F</notifyadmins>
   <notifyemails></notifyemails>
   <notifyowner>T</notifyowner>
-  <scriptfile>[/SuiteScripts/Cloud River/Control de Projectos/BLT Gestion Documentos/Copia en Proyectos Hijo/clr_copia_proyectos_hijo_scheduled.js]</scriptfile>
-  <scriptcustomfields>
-    <scriptcustomfield scriptid="custscript_clr_copia_proyectos_hijo_id">
-      <accesslevel>2</accesslevel>
-      <applyformatting>F</applyformatting>
-      <checkspelling>F</checkspelling>
-      <defaultchecked>F</defaultchecked>
-      <defaultselection></defaultselection>
-      <defaultvalue></defaultvalue>
-      <description></description>
-      <displayheight></displayheight>
-      <displaytype>NORMAL</displaytype>
-      <displaywidth></displaywidth>
-      <dynamicdefault></dynamicdefault>
-      <fieldtype>TEXT</fieldtype>
-      <help></help>
-      <isformula>F</isformula>
-      <ismandatory>F</ismandatory>
-      <label>BLT GESTION DOCUMENTOS IDs</label>
-      <linktext></linktext>
-      <maxlength></maxlength>
-      <maxvalue></maxvalue>
-      <minvalue></minvalue>
-      <onparentdelete></onparentdelete>
-      <searchlevel>2</searchlevel>
-      <selectrecordtype></selectrecordtype>
-      <setting></setting>
-      <storevalue>T</storevalue>
-    </scriptcustomfield>
-  </scriptcustomfields>
+  <scriptfile>[{{scriptfile}}]</scriptfile>
   <scriptdeployments>
-    <scriptdeployment scriptid="customdeploy_clr_copia_proyectos_hijo_1">
-      <custscript_clr_copia_proyectos_hijo_id></custscript_clr_copia_proyectos_hijo_id>
+    <scriptdeployment scriptid="{{deploymentId}}">
       <isdeployed>T</isdeployed>
       <loglevel>DEBUG</loglevel>
       <status>NOTSCHEDULED</status>
-      <title>Copia en Proyectos Hijo - Diferido 1</title>
+      <title>{{name}}</title>
       <recurrence>
         <single>
           <repeat></repeat>
-          <startdate>2022-08-24</startdate>
+          <startdate>2020-01-01</startdate>
           <starttime>23:00:00Z</starttime>
         </single>
       </recurrence>
