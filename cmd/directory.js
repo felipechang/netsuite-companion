@@ -17,7 +17,7 @@ const getChildren = (res, children) => {
             getChildren(res, child.children);
     }
 };
-export const readDirectoryChoices = (rootPath) => __awaiter(void 0, void 0, void 0, function* () {
+export const readDirectoryChoices = (rootPath, onlyFiles = false) => __awaiter(void 0, void 0, void 0, function* () {
     fs.existsSync(rootPath) || fs.mkdirSync(rootPath, { recursive: true });
     const tree = dirTree(rootPath);
     const files = [];
@@ -25,5 +25,5 @@ export const readDirectoryChoices = (rootPath) => __awaiter(void 0, void 0, void
         return files;
     if (tree.children)
         getChildren(files, tree.children);
-    return files.filter((f) => f.path.includes(".")); // only files
+    return onlyFiles ? files.filter((f) => f.path.includes(".")) : files; // only files
 });

@@ -1,7 +1,6 @@
 import {readDirectoryChoices} from "../../directory.js";
 import paths from "../../../paths.js";
 import inquirer from "inquirer";
-import {printTemplate} from "../../util.js";
 import {advanced} from "../../form.js";
 
 const ScriptOptions: { [key: string]: string } = {
@@ -63,6 +62,11 @@ export const run = async (third: string) => {
         name: "path",
         message: "Select folder:",
         choices,
+    }, {
+        type: "confirm",
+        name: "test",
+        message: "Create RESLET test?:",
+        default: () => false
     }]);
 
     await advanced(ScriptOptions[answer.type], answer, third === "no-deploy");

@@ -69,6 +69,11 @@ export const run = (third) => __awaiter(void 0, void 0, void 0, function* () {
             name: "path",
             message: "Select folder:",
             choices,
+        }, {
+            type: "confirm",
+            name: "test",
+            message: "Create RESLET test?:",
+            default: () => false
         }]);
     yield advanced(ScriptOptions[answer.type], answer, third === "no-deploy");
 });

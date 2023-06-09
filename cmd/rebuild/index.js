@@ -78,7 +78,7 @@ const processXml = (xmlData) => {
 export const run = () => __awaiter(void 0, void 0, void 0, function* () {
     console.log("Rebuilding TypeScript Definitions");
     const lists = records.concat(fields.concat(sublists));
-    const filePaths = yield readDirectoryChoices(paths.client.src.Objects.root);
+    const filePaths = yield readDirectoryChoices(paths.client.src.Objects.root, true);
     console.log("filePaths", filePaths);
     if (filePaths.length === 0) {
         console.error("No files found");

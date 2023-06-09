@@ -55,6 +55,9 @@ export const advanced = (fileType, answer, noDeploy) => __awaiter(void 0, void 0
     answer.deploymentId = `customscript_${fileSub}`;
     answer.scriptName = fileName;
     yield printTemplate(`${fileType}.tmpl`, answer.path, `${fileName}.ts`, answer, true);
+    if (answer.test) {
+        // TODO create test restlet
+    }
     if (!noDeploy) {
         yield printScriptTemplate(`${fileType}.xml.tmpl`, fileSub, answer);
     }

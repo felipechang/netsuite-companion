@@ -8,11 +8,11 @@ const getChildren = (res: DirectoryTree[], children: DirectoryTree[]) => {
         if (child.children) getChildren(res, child.children);
     }
 }
-export const readDirectoryChoices = async (rootPath: string): Promise<DirectoryTree[]> => {
+export const readDirectoryChoices = async (rootPath: string, onlyFiles = false): Promise<DirectoryTree[]> => {
     fs.existsSync(rootPath) || fs.mkdirSync(rootPath, {recursive: true});
     const tree = dirTree(rootPath);
     const files: DirectoryTree[] = [];
     if (!tree) return files;
     if (tree.children) getChildren(files, tree.children);
-    return files.filter((f) => f.path.includes(".")); // only files
+    return onlyFiles ? files.filter((f) => f.path.includes(".")) : files; // only files
 }

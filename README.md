@@ -39,3 +39,4 @@ the [NetSuite Record Browser](https://system.netsuite.com/help/helpcenter/en_US/
 - Add RESTlet testing framework
 - Add opencommit to pipeline
 - Add deploy commands with SDF
+  - On deploy: remove all directories with only .gitignore && tsc && sdf push

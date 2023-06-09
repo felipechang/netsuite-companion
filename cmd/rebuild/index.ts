@@ -73,7 +73,7 @@ const processXml = (xmlData: string): IPageRecord => {
 export const run = async () => {
     console.log("Rebuilding TypeScript Definitions");
     const lists = records.concat(fields.concat(sublists));
-    const filePaths = await readDirectoryChoices(paths.client.src.Objects.root);
+    const filePaths = await readDirectoryChoices(paths.client.src.Objects.root, true);
 
     console.log("filePaths", filePaths);
 
