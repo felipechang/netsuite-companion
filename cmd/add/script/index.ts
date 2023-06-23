@@ -29,7 +29,7 @@ export const run = async (third: string) => {
         type: "list",
         name: "type",
         message: "Select script type:",
-        choices: (a) => [
+        choices: () => [
             "Bundle",
             "Client",
             "Map Reduce",

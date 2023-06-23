@@ -1,16 +1,16 @@
+import inquirer from "inquirer";
+import {Level} from "level";
+import {printTemplate, printScriptTemplate} from "./util.js";
 import {readDirectoryChoices} from "./directory.js";
 import paths from "../paths.js";
-import inquirer from "inquirer";
-import {printTemplate, printScriptTemplate} from "./util.js";
+
+const db = new Level(paths.app.db.scripts, {valueEncoding: 'json'})
 
 export const simple = async (fileName: string, suffix: string) => {
     const dirPaths = await readDirectoryChoices(paths.client.src.FileCabinet.SuiteScripts.root);
     const choices = dirPaths.filter((choice) => choice.children).map((choice) => choice.path);
     choices.shift();
-    if (choices.length === 0) {
-        console.log("Must create a project first");
-        return;
-    }
+    if (choices.length === 0) return console.log("Must create a project first");
     const answer = await inquirer.prompt([{
         type: "input",
         name: "name",
@@ -48,10 +48,11 @@ export const advanced = async (fileType: string, answer: any, noDeploy: boolean)
     answer.deploymentId = `customdeploy_${fileSub}`;
     answer.scriptName = fileName;
     await printTemplate(`${fileType}.tmpl`, answer.path, `${fileName}.ts`, answer, true);
+    if (!noDeploy) await printScriptTemplate(`${fileType}.xml.tmpl`, fileSub, answer);
     if (answer.test) {
-        // TODO create test restlet
-    }
-    if (!noDeploy) {
-        await printScriptTemplate(`${fileType}.xml.tmpl`, fileSub, answer);
+        const nameKey= `${fileName}:${answer.scriptId}`;
+        let found = false;
+        for await (const [key] of db.iterator()) if (key === nameKey) found = true;
+        if (!found) await db.put(nameKey, "");
     }
 }

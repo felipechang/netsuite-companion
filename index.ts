@@ -8,6 +8,7 @@ import * as addProject from "./cmd/add/project/index.js";
 import * as addScript from "./cmd/add/script/index.js";
 import * as addTypes from "./cmd/add/types/index.js";
 import * as imported from "./cmd/import/record/index.js";
+import * as tests from "./cmd/test/index.js";
 import * as init from "./cmd/init/index.js";
 import * as rebuild from "./cmd/rebuild/index.js";
 import fs from "fs";
@@ -49,6 +50,9 @@ const [, , first, second, third] = process.argv;
             break;
         case "rebuild:":
             await rebuild.run();
+            break;
+        case "test":
+            await tests.run();
             break;
         default:
             console.error("Invalid command");

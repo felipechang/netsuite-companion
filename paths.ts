@@ -1,5 +1,3 @@
-// FILE MUST BE ON THE CMD FOLDER FOR PATHS TO WORK
-
 import path from "path"
 import {fileURLToPath} from 'url';
 import {homedir} from 'os';
@@ -19,6 +17,10 @@ const paths = {
     app: {
         root: app,
         templates: path.join(app, "templates"),
+        db: {
+            scripts: path.join(app, "db", "scripts"),
+            results: path.join(app, "db", "results"),
+        },
         boilerplate: path.join(app, "cmd", "init", "boilerplate.zip"),
     },
 
