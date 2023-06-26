@@ -11,7 +11,7 @@ const cleanTemplate = (template: string): string => {
         .replace(/&amp;/g, "&");
 }
 
-export const printTemplate = (fileName: string, outPath: string, outFile: string, answer: any, defaults: boolean): Promise<unknown> => {
+export const printTemplate = (fileName: string, outPath: string, outFile: string, answer: any, defaults = false): Promise<unknown> => {
     return new Promise(resolve => {
         if (defaults) {
             answer.project = process.env.PROJECT_NAME;

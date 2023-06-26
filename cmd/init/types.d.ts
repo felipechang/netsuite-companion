@@ -5,6 +5,7 @@ interface IStorage {
     prefix: string
     lang: string
 }
+
 interface InitAnswer extends IStorage {
     store: boolean
 }

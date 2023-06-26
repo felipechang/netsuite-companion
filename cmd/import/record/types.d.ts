@@ -2,6 +2,7 @@ interface IPageRecordNode {
     id: string
     type: string
 }
+
 interface IPageRecord {
     name: string
     id: string
@@ -11,6 +12,7 @@ interface IPageRecord {
         [key: string]: IPageRecordNode[]
     }
 }
+
 interface ImportRecordAnswer {
     option: boolean,
     url: string,

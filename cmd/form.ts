@@ -1,10 +1,7 @@
 import inquirer from "inquirer";
-import {Level} from "level";
-import {printTemplate, printScriptTemplate} from "./util.js";
+import {printScriptTemplate, printTemplate} from "./util.js";
 import {readDirectoryChoices} from "./directory.js";
 import paths from "../paths.js";
-
-const db = new Level(paths.app.db.scripts, {valueEncoding: 'json'})
 
 export const simple = async (fileName: string, suffix: string) => {
     const dirPaths = await readDirectoryChoices(paths.client.src.FileCabinet.SuiteScripts.root);
@@ -49,10 +46,5 @@ export const advanced = async (fileType: string, answer: any, noDeploy: boolean)
     answer.scriptName = fileName;
     await printTemplate(`${fileType}.tmpl`, answer.path, `${fileName}.ts`, answer, true);
     if (!noDeploy) await printScriptTemplate(`${fileType}.xml.tmpl`, fileSub, answer);
-    if (answer.test) {
-        const nameKey= `${fileName}:${answer.scriptId}`;
-        let found = false;
-        for await (const [key] of db.iterator()) if (key === nameKey) found = true;
-        if (!found) await db.put(nameKey, "");
-    }
+    if (answer.test) await printTemplate(`test.tmpl`, paths.client.tests.root, `${answer.scriptId}.json`, answer, true);
 }

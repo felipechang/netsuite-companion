@@ -41,6 +41,6 @@ export const run = async () => {
     if (answer.readme) {
         answer.user_name = process.env.USER_NAME;
         answer.user_email = process.env.USER_EMAIL;
-        await printTemplate(`README.md.${storage.lang}.tmpl`, folderPath, "README.md", answer, false);
+        await printTemplate(`README.md.${storage.lang}.tmpl`, folderPath, "README.md", answer);
     }
 }

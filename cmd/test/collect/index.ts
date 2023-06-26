@@ -1,15 +1,12 @@
-import paths from "../../paths.js";
 import inquirer from "inquirer";
 
 /*
 We have the script ID and deployment ID
-
 RESTLet loads script logs using script and deployment ID
-
 User Event: Restlet Opens the record, updates with values, and saves. Logs are then read and sent back to client
-
-if Scheduled or Map/Reduce or Mass Update(?): first give the option to evaluate one of the jobs. RESTlet executes the process when launched and returns an ID. ID is stored in memory DB. ID is printedin console. IF the RESTlet is called with an ID, it gets the associated logs for that task.
-
+if Scheduled or Map/Reduce or Mass Update(?): first give the option to evaluate one of the jobs. RESTlet executes the
+ process when launched and returns an ID. ID is stored in memory DB. ID is printedin console. IF the RESTlet is called
+ with an ID, it gets the associated logs for that task.
 RESTlets and Sutielets are called, and then a second time to read logs.
 
 Need:
@@ -44,14 +41,14 @@ export const run = async () => {
     }, {
         type: "input",
         name: "run_test",
-        message: "Enter script name:",
+        message: "Select script to test:",
         when(a) {
             return a.type === Options.Test;
         }
     }, {
         type: "input",
-        name: "name",
-        message: "Enter script name:",
+        name: "run_collect",
+        message: "Select script to collect:",
         when(a) {
             return a.type === Options.Collect;
         }

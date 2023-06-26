@@ -6,6 +6,7 @@ const app = path.dirname(fileURLToPath(import.meta.url));
 const client = process.cwd();
 const src = path.join(client, "src");
 const models = path.join(client, "models");
+const tests = path.join(client, "tests");
 const FileCabinet = path.join(src, "FileCabinet");
 const home = path.join(homedir(), ".netsuite-companion");
 
@@ -17,10 +18,6 @@ const paths = {
     app: {
         root: app,
         templates: path.join(app, "templates"),
-        db: {
-            scripts: path.join(app, "db", "scripts"),
-            results: path.join(app, "db", "results"),
-        },
         boilerplate: path.join(app, "cmd", "init", "boilerplate.zip"),
     },
 
@@ -32,6 +29,9 @@ const paths = {
             records: path.join(models, "records"),
             fields: path.join(models, "fields"),
             sublists: path.join(models, "sublists"),
+        },
+        tests: {
+            root: tests
         },
         src: {
             root: src,

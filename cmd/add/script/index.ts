@@ -65,8 +65,8 @@ export const run = async (third: string) => {
     }, {
         type: "confirm",
         name: "test",
-        message: "Create RESLET test?:",
-        default: () => false
+        message: "Create test?:",
+        default: () => true
     }]);
 
     await advanced(ScriptOptions[answer.type], answer, third === "no-deploy");

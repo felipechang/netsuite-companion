@@ -70,5 +70,5 @@ export const run = async (third: string) => {
     await printTemplate("record.d.ts.tmpl", outPath, pageRecord.id + ".d.ts", {
         name: formatFileName(pageRecord.name),
         methods,
-    }, false);
+    });
 }
