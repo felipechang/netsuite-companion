@@ -18,10 +18,10 @@ const records = [
     "customrecord", // Custom Record
 ];
 const fields = [
-    "custentity",
-    "custitem",
-    "custevent",
-    "custbody",
+    "custentity", // Custom Entity Fields
+    "custitem", // Custom Item Fields
+    "custevent", // Custom CRM Fields
+    "custbody", // Transaction Body Fields
     "custrecord", // Other Record Fields
 ];
 const sublists = [
@@ -115,6 +115,6 @@ export const run = () => __awaiter(void 0, void 0, void 0, function* () {
         yield printTemplate("record.d.ts.tmpl", outPath, pageRecord.id + ".d.ts", {
             name: formatFileName(pageRecord.name),
             methods,
-        }, false);
+        });
     }
 });

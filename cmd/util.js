@@ -9,7 +9,7 @@ const cleanTemplate = (template) => {
         .replace(/&#x27;/g, "'")
         .replace(/&amp;/g, "&");
 };
-export const printTemplate = (fileName, outPath, outFile, answer, defaults) => {
+export const printTemplate = (fileName, outPath, outFile, answer, defaults = false) => {
     return new Promise(resolve => {
         if (defaults) {
             answer.project = process.env.PROJECT_NAME;

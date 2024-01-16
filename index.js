@@ -15,6 +15,8 @@ import * as addProject from "./cmd/add/project/index.js";
 import * as addScript from "./cmd/add/script/index.js";
 import * as addTypes from "./cmd/add/types/index.js";
 import * as imported from "./cmd/import/record/index.js";
+import * as collectTest from "./cmd/test/collect/index.js";
+import * as runTest from "./cmd/test/run/index.js";
 import * as init from "./cmd/init/index.js";
 import * as rebuild from "./cmd/rebuild/index.js";
 import fs from "fs";
@@ -45,6 +47,12 @@ const [, , first, second, third] = process.argv;
             break;
         case "add:type":
             yield addTypes.run();
+            break;
+        case "test:run":
+            yield runTest.run();
+            break;
+        case "test:testCollect":
+            yield collectTest.run();
             break;
         case "import:record":
             yield imported.run(third);

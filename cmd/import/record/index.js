@@ -75,5 +75,5 @@ export const run = (third) => __awaiter(void 0, void 0, void 0, function* () {
     yield printTemplate("record.d.ts.tmpl", outPath, pageRecord.id + ".d.ts", {
         name: formatFileName(pageRecord.name),
         methods,
-    }, false);
+    });
 });

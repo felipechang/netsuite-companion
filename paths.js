@@ -1,4 +1,3 @@
-// FILE MUST BE ON THE CMD FOLDER FOR PATHS TO WORK
 import path from "path";
 import { fileURLToPath } from 'url';
 import { homedir } from 'os';
@@ -6,6 +5,7 @@ const app = path.dirname(fileURLToPath(import.meta.url));
 const client = process.cwd();
 const src = path.join(client, "src");
 const models = path.join(client, "models");
+const tests = path.join(client, "tests");
 const FileCabinet = path.join(src, "FileCabinet");
 const home = path.join(homedir(), ".netsuite-companion");
 export const STORAGE_FILE = "storage.json";
@@ -24,6 +24,9 @@ const paths = {
             records: path.join(models, "records"),
             fields: path.join(models, "fields"),
             sublists: path.join(models, "sublists"),
+        },
+        tests: {
+            root: tests
         },
         src: {
             root: src,

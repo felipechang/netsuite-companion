@@ -49,6 +49,6 @@ export const run = () => __awaiter(void 0, void 0, void 0, function* () {
     if (answer.readme) {
         answer.user_name = process.env.USER_NAME;
         answer.user_email = process.env.USER_EMAIL;
-        yield printTemplate(`README.md.${storage.lang}.tmpl`, folderPath, "README.md", answer, false);
+        yield printTemplate(`README.md.${storage.lang}.tmpl`, folderPath, "README.md", answer);
     }
 });

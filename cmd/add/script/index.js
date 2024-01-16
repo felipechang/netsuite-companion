@@ -36,7 +36,7 @@ export const run = (third) => __awaiter(void 0, void 0, void 0, function* () {
             type: "list",
             name: "type",
             message: "Select script type:",
-            choices: (a) => [
+            choices: () => [
                 "Bundle",
                 "Client",
                 "Map Reduce",
@@ -72,8 +72,8 @@ export const run = (third) => __awaiter(void 0, void 0, void 0, function* () {
         }, {
             type: "confirm",
             name: "test",
-            message: "Create RESLET test?:",
-            default: () => false
+            message: "Create test?:",
+            default: () => true
         }]);
     yield advanced(ScriptOptions[answer.type], answer, third === "no-deploy");
 });

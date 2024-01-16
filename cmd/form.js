@@ -7,18 +7,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import inquirer from "inquirer";
+import { printScriptTemplate, printTemplate } from "./util.js";
 import { readDirectoryChoices } from "./directory.js";
 import paths from "../paths.js";
-import inquirer from "inquirer";
-import { printTemplate, printScriptTemplate } from "./util.js";
 export const simple = (fileName, suffix) => __awaiter(void 0, void 0, void 0, function* () {
     const dirPaths = yield readDirectoryChoices(paths.client.src.FileCabinet.SuiteScripts.root);
     const choices = dirPaths.filter((choice) => choice.children).map((choice) => choice.path);
     choices.shift();
-    if (choices.length === 0) {
-        console.log("Must create a project first");
-        return;
-    }
+    if (choices.length === 0)
+        return console.log("Must create a project first");
     const answer = yield inquirer.prompt([{
             type: "input",
             name: "name",
@@ -55,10 +53,8 @@ export const advanced = (fileType, answer, noDeploy) => __awaiter(void 0, void 0
     answer.deploymentId = `customdeploy_${fileSub}`;
     answer.scriptName = fileName;
     yield printTemplate(`${fileType}.tmpl`, answer.path, `${fileName}.ts`, answer, true);
-    if (answer.test) {
-        // TODO create test restlet
-    }
-    if (!noDeploy) {
+    if (!noDeploy)
         yield printScriptTemplate(`${fileType}.xml.tmpl`, fileSub, answer);
-    }
+    if (answer.test)
+        yield printTemplate(`test.tmpl`, paths.client.tests.root, `${answer.scriptId}.json`, answer, true);
 });
